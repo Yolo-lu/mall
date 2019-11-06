@@ -20,50 +20,52 @@
       <div class="text">搜索</div>
     </div>
 
-    <div class="package" v-if="lock">
-      <!--    轮播图-->
-      <div class="banner">
-        <van-swipe :autoplay="3000" indicator-color="white">
-          <van-swipe-item v-for="(item, index) in data.slides" :key="index"
-          ><img :src="item.image" alt=""
-          /></van-swipe-item>
-        </van-swipe>
-      </div>
-      <!--    商品分类-->
-      <div class="category">
-        <div v-for="(item, index) in data.category" :key="index" class="list">
-          <div>
-            <img :src="item.image" alt="" />
-            <div class="name">{{ item.mallCategoryName }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="line" v-if="data.advertesPicture">
-        <img :src="data.advertesPicture.PICTURE_ADDRESS" alt="" />
-      </div>
-      <recommend :data="data.recommend"></recommend>
-      <!--    将data.recommend数据传入到子组件-->
-      <!--    一个组件用三次-->
-      <div class="title">
-        <span class="num">1F</span>
-        <span class="name" v-if="data.floorName">{{ data.floorName.floor1 }}</span>
-      </div>
-      <floor :data="data.floor1"></floor>
-      <div class="title">
-        <span class="num">2F</span>
-        <span class="name" v-if="data.floorName">{{ data.floorName.floor2 }}</span>
-      </div>
-      <floor :data="data.floor2"></floor>
-      <div class="title">
-        <span class="num">3F</span>
-        <span class="name" v-if="data.floorName">{{ data.floorName.floor3 }}</span>
-      </div>
-      <floor :data="data.floor3"></floor>
-      <!--    热销商品-->
-      <div class="title">
-        <span class="name">热销商品</span>
-      </div>
-      <hot :data="data.hotGoods"></hot>
+    <div class="package" v-if="lock" ref="wrapper">
+     <div>
+       <!--    轮播图-->
+       <div class="banner">
+         <van-swipe :autoplay="3000" indicator-color="white">
+           <van-swipe-item v-for="(item, index) in data.slides" :key="index"
+           ><img :src="item.image" alt=""
+           /></van-swipe-item>
+         </van-swipe>
+       </div>
+       <!--    商品分类-->
+       <div class="category">
+         <div v-for="(item, index) in data.category" :key="index" class="list">
+           <div>
+             <img :src="item.image" alt="" />
+             <div class="name">{{ item.mallCategoryName }}</div>
+           </div>
+         </div>
+       </div>
+       <div class="line" v-if="data.advertesPicture">
+         <img :src="data.advertesPicture.PICTURE_ADDRESS" alt="" />
+       </div>
+       <recommend :data="data.recommend"></recommend>
+       <!--    将data.recommend数据传入到子组件-->
+       <!--    一个组件用三次-->
+       <div class="title">
+         <span class="num">1F</span>
+         <span class="name" v-if="data.floorName">{{ data.floorName.floor1 }}</span>
+       </div>
+       <floor :data="data.floor1"></floor>
+       <div class="title">
+         <span class="num">2F</span>
+         <span class="name" v-if="data.floorName">{{ data.floorName.floor2 }}</span>
+       </div>
+       <floor :data="data.floor2"></floor>
+       <div class="title">
+         <span class="num">3F</span>
+         <span class="name" v-if="data.floorName">{{ data.floorName.floor3 }}</span>
+       </div>
+       <floor :data="data.floor3"></floor>
+       <!--    热销商品-->
+       <div class="title">
+         <span class="name">热销商品</span>
+       </div>
+       <hot :data="data.hotGoods"></hot>
+     </div>
     </div>
     <div v-if="!lock">
       <div class="no" v-if="!value" >暂无搜索历史</div>
@@ -74,6 +76,7 @@
 </template>
 
 <script>
+  import BScroll from "better-scroll";
 import recommend from "../components/recommend/Recommend";
 import floor from "../components/floor/Floor";
 import hot from "../components/hot/Hot";
@@ -103,7 +106,16 @@ export default {
       try {
         let res = await this.$api.recommend();
         this.data = res.data;
+        this.$store.state.category=this.data.category
         console.log(this.data);
+        this.$nextTick(() => {    //平滑滚动
+          this.scroll = new BScroll(this.$refs.wrapper, {
+            scrollY: true,
+            click: true,
+            startY:0
+          });
+        });
+        // console.log(this.data);
       } catch (e) {
         console.log(e);
       }
@@ -155,7 +167,7 @@ export default {
       try {
         let res = await this.$api.search(value);
         // this.data = res.data;
-        console.log(res);
+        // console.log(res);
       } catch (e) {
         console.log(e);
       }
@@ -257,5 +269,8 @@ export default {
       color: #E2534D;
       padding-left: 10px;
     }
+  }
+  .package{
+    height: 667px;
   }
 </style>

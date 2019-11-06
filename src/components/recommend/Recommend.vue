@@ -40,7 +40,7 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(() => {
+    this.$nextTick(() => {    //平滑滚动
       this.scroll = new BScroll(this.$refs.wrapper, {
         scrollX: true,
         click: true
