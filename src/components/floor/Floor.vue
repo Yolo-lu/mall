@@ -2,12 +2,12 @@
   <div>
     <div class="box">
       <div class="list">
-        <div v-for="(item) in data.slice(0,2)" :key="item.goodsId">
+        <div v-for="(item,index) in data.slice(0,2)" :key="item.goodsId" @click="buy(index)">
           <div class="left"><img :src="item.image" alt=""></div>
         </div>
       </div>
     <div class="list">
-      <div v-for="(item) in data.slice(2)" :key="item.goodsId" >
+      <div v-for="(item,index) in data.slice(2)" :key="item.goodsId" @click="buy(index)">
         <div class="left"><img :src="item.image" alt=""></div>
       </div>
     </div>
@@ -29,7 +29,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    buy(val){  //跳转详情页
+      this.$router.push({name:"detail",query:{id:this.data[val].goodsId}})
+    }
+  },
 
   mounted() {},
   created() {},

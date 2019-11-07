@@ -1,4 +1,5 @@
 export default {
   city:"",
-  category:[]
+  category:[],
+  user:{}
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="hot">
-      <div class="list" v-for="(item,index) in data" :key="index">
+      <div class="list" v-for="(item,index) in data" :key="index" @click="buy(index)">
         <img :src="item.image" alt="">
         <div class="text">{{ item.name }}</div>
         <div class="price">
@@ -26,7 +26,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    buy(val){  //跳转详情页
+      this.$router.push({name:"detail",query:{id:this.data[val].goodsId}})
+    }
+  },
 
   mounted() {},
   created() {},

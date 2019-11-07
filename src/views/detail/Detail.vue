@@ -3,19 +3,19 @@
     <div class="back" @click="goBack"><van-icon name="arrow-left" size="25px" class="left"/></div>
     <slide :data="data.goodsOne" v-if="data.goodsOne"></slide>
     <div class="text">
-      <div class="name">{{this.data.goodsOne.name}}</div>
-      <div class="price">￥{{this.data.goodsOne.present_price}}</div>
+      <div class="name">{{data.goodsOne.name}}</div>
+      <div class="price">￥{{data.goodsOne.present_price}}</div>
       <div class="row">
-        <div class="freight">运费：{{this.data.goodsOne.__v}}</div>
-        <div class="surplus">剩余：{{this.data.goodsOne.amount}}</div>
-       <div v-if="true">
+        <div class="freight">运费：{{data.goodsOne.__v}}</div>
+        <div class="surplus">剩余：{{data.goodsOne.amount}}</div>
+       <div v-if="lock===true">
          <div class="collect">取消收藏
-         <div class="heart" ><van-icon name="like-o" /></div>
+         <div class="heart" @click="cancelCollection(id)" ><van-icon name="like" color="#FF4847"  /></div>
        </div>
        </div>
         <div v-else>
           <div class="collect">收藏
-            <div class="heart" ><van-icon name="like-o" color="#FF4847" /></div>
+            <div class="heart" @click="collection(data.goodsOne)"><van-icon name="like-o"/></div>
           </div>
         </div>
       </div>
@@ -53,7 +53,8 @@ export default {
     return {
       id: "",
       data :{},
-      active:0
+      active:0,
+      lock:false
     };
   },
   methods: {
@@ -61,7 +62,7 @@ export default {
       try {
         let res = await this.$api.goodOne(id);
         this.data=res.goods
-        console.log(this.data);
+        // console.log(this.data);
         this.$nextTick(() => {    //平滑滚动
           this.scroll = new BScroll(this.$refs.wrapper, {
             scrollY: true,
@@ -80,17 +81,40 @@ export default {
       this.$router.push(index)
     },
     onClickButton() {
-      Toast('点击按钮');
-    }
+
+    },
+    async collection(goodsOne) {
+      try {
+        let res = await this.$api.collection(goodsOne) ;
+        console.log(res);
+        if(res.code!==200){
+          this.$router.push("./login")
+        }
+        this.lock=true  //点击收藏后变成取消收藏
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async cancelCollection(id) {
+      try {
+        let res = await this.$api.cancelCollection(id);
+        console.log(res);
+        this.lock=false  //点击取消收藏后又变回收藏
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
 
   mounted() {
-    this.id = this.$route.query.id; //接收分类页的id
+    this.id = this.$route.query.id; //接收分类页、首页的id
     this.goodOne(this.id)
   },
   created() {},
   filters: {},
-  computed: {},
+  computed: {
+
+  },
   watch: {},
   directives: {}
 };

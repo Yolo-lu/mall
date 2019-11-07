@@ -14,69 +14,74 @@
           v-model="value"
           background="#f7f8fa"
           class="input"
-          @focus="lock=false"
+          @focus="lock = false"
         />
       </div>
       <div class="text">搜索</div>
     </div>
 
     <div class="package" v-if="lock" ref="wrapper">
-     <div>
-       <!--    轮播图-->
-       <div class="banner">
-         <van-swipe :autoplay="3000" indicator-color="white">
-           <van-swipe-item v-for="(item, index) in data.slides" :key="index"
-           ><img :src="item.image" alt=""
-           /></van-swipe-item>
-         </van-swipe>
-       </div>
-       <!--    商品分类-->
-       <div class="category">
-         <div v-for="(item, index) in data.category" :key="index" class="list">
-           <div>
-             <img :src="item.image" alt="" />
-             <div class="name">{{ item.mallCategoryName }}</div>
-           </div>
-         </div>
-       </div>
-       <div class="line" v-if="data.advertesPicture">
-         <img :src="data.advertesPicture.PICTURE_ADDRESS" alt="" />
-       </div>
-       <recommend :data="data.recommend"></recommend>
-       <!--    将data.recommend数据传入到子组件-->
-       <!--    一个组件用三次-->
-       <div class="title">
-         <span class="num">1F</span>
-         <span class="name" v-if="data.floorName">{{ data.floorName.floor1 }}</span>
-       </div>
-       <floor :data="data.floor1"></floor>
-       <div class="title">
-         <span class="num">2F</span>
-         <span class="name" v-if="data.floorName">{{ data.floorName.floor2 }}</span>
-       </div>
-       <floor :data="data.floor2"></floor>
-       <div class="title">
-         <span class="num">3F</span>
-         <span class="name" v-if="data.floorName">{{ data.floorName.floor3 }}</span>
-       </div>
-       <floor :data="data.floor3"></floor>
-       <!--    热销商品-->
-       <div class="title">
-         <span class="name">热销商品</span>
-       </div>
-       <hot :data="data.hotGoods"></hot>
-     </div>
+      <div>
+        <!--    轮播图-->
+        <div class="banner">
+          <van-swipe :autoplay="3000" indicator-color="white">
+            <van-swipe-item v-for="(item, index) in data.slides" :key="index"
+              ><img :src="item.image" alt=""
+            /></van-swipe-item>
+          </van-swipe>
+        </div>
+        <!--    商品分类-->
+        <div class="category">
+          <div v-for="(item, index) in data.category" :key="index" class="list">
+            <div>
+              <img :src="item.image" alt="" />
+              <div class="name">{{ item.mallCategoryName }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="line" v-if="data.advertesPicture">
+          <img :src="data.advertesPicture.PICTURE_ADDRESS" alt="" />
+        </div>
+        <recommend :data="data.recommend"></recommend>
+        <!--    将data.recommend数据传入到子组件-->
+        <!--    一个组件用三次-->
+        <div class="title">
+          <span class="num">1F</span>
+          <span class="name" v-if="data.floorName">{{
+            data.floorName.floor1
+          }}</span>
+        </div>
+        <floor :data="data.floor1"></floor>
+        <div class="title">
+          <span class="num">2F</span>
+          <span class="name" v-if="data.floorName">{{
+            data.floorName.floor2
+          }}</span>
+        </div>
+        <floor :data="data.floor2"></floor>
+        <div class="title">
+          <span class="num">3F</span>
+          <span class="name" v-if="data.floorName">{{
+            data.floorName.floor3
+          }}</span>
+        </div>
+        <floor :data="data.floor3"></floor>
+        <!--    热销商品-->
+        <div class="title">
+          <span class="name">热销商品</span>
+        </div>
+        <hot :data="data.hotGoods"></hot>
+      </div>
     </div>
     <div v-if="!lock">
-      <div class="no" v-if="!value" >暂无搜索历史</div>
+      <div class="no" v-if="!value">暂无搜索历史</div>
       <div class="searchlist" v-else>123</div>
     </div>
-
   </div>
 </template>
 
 <script>
-  import BScroll from "better-scroll";
+import BScroll from "better-scroll";
 import recommend from "../components/recommend/Recommend";
 import floor from "../components/floor/Floor";
 import hot from "../components/hot/Hot";
@@ -93,39 +98,40 @@ export default {
       city: "",
       value: "",
       data: {},
-      lock:true
+      lock: true
     };
   },
   methods: {
     skip() {
-      this.$store.state.city=this.city, // 将city存入vuex
-      this.$router.push("/location");
+      (this.$store.state.city = this.city), // 将city存入vuex
+        this.$router.push("/location");
     },
     // 调接口
     async recommend() {
       try {
         let res = await this.$api.recommend();
         this.data = res.data;
-        this.$store.state.category=this.data.category
+        this.$store.state.category = this.data.category;
         console.log(this.data);
-        this.$nextTick(() => {    //平滑滚动
+        this.$nextTick(() => {
+          //平滑滚动
           this.scroll = new BScroll(this.$refs.wrapper, {
             scrollY: true,
             click: true,
-            startY:0
+            startY: 0
           });
         });
         // console.log(this.data);
       } catch (e) {
         console.log(e);
       }
-    },
+    }
   },
 
   mounted() {
     this.recommend();
     let _this = this;
-    this.city = this.$store.city
+    this.city = this.$store.city;
     if (!this.city) {
       AMap.plugin("AMap.Geolocation", function() {
         let geolocation = new AMap.Geolocation({
@@ -159,9 +165,7 @@ export default {
   },
   created() {},
   filters: {},
-  computed: {
-
-  },
+  computed: {},
   watch: {
     async value(value) {
       try {
@@ -185,11 +189,11 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
-  img{
+  img {
     width: 16px;
     height: 16px;
   }
-  .city{
+  .city {
     line-height: 40px;
   }
   .text {
@@ -199,7 +203,7 @@ export default {
     height: 40px;
   }
 }
-.no{
+.no {
   text-align: center;
   margin-top: 50px;
 }
@@ -252,25 +256,25 @@ export default {
     }
   }
 }
-.title{
+.title {
+  text-align: center;
+  margin: 20px 0;
+  .num {
+    display: inline-block;
     text-align: center;
-    margin: 20px 0;
-    .num{
-      display: inline-block;
-      text-align: center;
-      line-height: 25px;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      color: white;
-      background:#E2534D ;
-    }
-    .name{
-      color: #E2534D;
-      padding-left: 10px;
-    }
+    line-height: 25px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    background: #e2534d;
   }
-  .package{
-    height: 667px;
+  .name {
+    color: #e2534d;
+    padding-left: 10px;
   }
+}
+.package {
+  height: 667px;
+}
 </style>

@@ -3,7 +3,7 @@
     <div class="warp">商品推荐</div>
     <div class="all" ref="wrapper">
       <div class="recommend">
-        <div class="box" v-for="(item, index) in data" :key="index">
+        <div class="box" v-for="(item, index) in data" :key="index" @click="buy(index)">
           <img :src="item.image" alt="" />
           <div class="text">{{ item.goodsName }}</div>
           <div class="price">
@@ -36,7 +36,10 @@ export default {
     return {};
   },
   methods: {
-    onClickButton() {}
+    onClickButton() {},
+    buy(val){  //跳转详情页
+      this.$router.push({name:"detail",query:{id:this.data[val].goodsId}})
+    }
   },
 
   mounted() {
