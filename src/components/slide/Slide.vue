@@ -3,14 +3,14 @@
     <div class="banner">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(item, index) in image" :key="index"
-          ><img :src="item" alt=""
-        /></van-swipe-item>
+          ><img :src="item" alt="" @click="Preview_image(image,index)"/></van-swipe-item>
       </van-swipe>
     </div>
   </div>
 </template>
 
 <script>
+  import {ImagePreview} from "vant"
 export default {
   name: "Slide",
   components: {},
@@ -21,10 +21,19 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+    };
   },
   methods: {
-
+    Preview_image(image,index){  //点击图片预览
+      ImagePreview({
+        images:image,
+        showIndicators:true,
+        showIndex:true,
+        loop:false,
+        startPosition:index,
+      })
+    }
   },
 
   mounted() {},

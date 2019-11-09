@@ -2,16 +2,23 @@
   <div>
     <div class="mine">
       <div class="vip">会员中心</div>
-      <div class="info" v-if="code === 200">
-        <settings :users="users"></settings>
-
+      <div class="info" v-if="flag">
+        <settings ></settings>
         <div class="img"><img :src="users.avatar" alt="" /></div>
         <div class="text">欢迎您 :{{ users.nickname }}</div>
-        <div class="logout" @click="loginOut">
-          <div v-if="code === 200">退出登录</div>
-          <div v-else>登录/注册</div>
+        <div class="logout" >
+          <div  @click="exit">退出登录</div>
         </div>
       </div>
+      <div class="info" v-else>
+        <settings :users="users"></settings>
+        <div class="img"><img src="../../assets/head.jpg" alt="" /></div>
+        <div class="text">欢迎您</div>
+        <div class="logout" >
+          <div @click="login">登录/注册</div>
+        </div>
+      </div>
+
       <vipcenter></vipcenter>
     </div>
   </div>
@@ -29,28 +36,17 @@ export default {
   props: {},
   data() {
     return {
-      users: {} /*登录成功返回的用户信息*/,
-      code: {} /*登录成功返回的code*/,
-
+      flag:true
     };
   },
   methods: {
-    // exit(){
-    //   this.$store.state.user="";    /*退出登录*/
-    //   localStorage.removeItem("user");
-    //   this.$router.push("./login")
-    // }
-    //获取用户
-    async user() {
-      try {
-        let res = await this.$api.user();
-        this.users = res.userInfo;
-        this.code = res.code;
-        console.log(res);
-      } catch (e) {
-        console.log(e);
-      }
+    exit(){
+      this.$store.state.user=null;    /*退出登录*/
+      localStorage.removeItem("user");
+      this.loginOut();
+      this.flag=false
     },
+
     async loginOut() {
       try {
         let res = await this.$api.loginOut();
@@ -66,12 +62,15 @@ export default {
   },
 
   mounted() {
-    //取出数据库中存的用户信息
-    this.user();
+
   },
   created() {},
   filters: {},
-  computed: {},
+  computed: {
+    users(){
+      return this.$store.state.user
+    }
+  },
   watch: {},
   directives: {}
 };

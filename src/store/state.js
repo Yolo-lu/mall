@@ -1,5 +1,7 @@
 export default {
   city:"",
   category:[],
-  user:{}
+  user:{},
+  address:[],
+  addressInfo:[]
 }

@@ -4,7 +4,7 @@
     <van-tabbar v-model="active" active-color="#EA6424">
       <van-tabbar-item icon="wap-home-o" @click="skip('/home')">商城</van-tabbar-item>
       <van-tabbar-item icon="apps-o" @click="skip('/category')">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" info="2" @click="skip('/shoppingCar')">购物车</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" @click="skip('/shoppingCar')">购物车</van-tabbar-item>
       <van-tabbar-item icon="manager-o" @click="skip('/mine')">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -26,7 +26,9 @@ export default {
     }
   },
 
-  mounted() {},
+  mounted() {
+    // this.num=this.$route.query.num
+  },
   created() {},
   filters: {},
   computed: {},

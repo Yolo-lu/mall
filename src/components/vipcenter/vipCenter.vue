@@ -6,38 +6,38 @@
      <div>待付款</div>
    </div>
      <div class="item">
-       <div><van-icon name="send-gift-o" size="30px"/></div>
+       <div><van-icon name="send-gift-o" size="25px"/></div>
        <div>待发货</div>
      </div>
      <div class="item">
-       <div><van-icon name="logistics" size="30px"/></div>
+       <div><van-icon name="logistics" size="25px"/></div>
        <div>待收货</div>
      </div>
      <div class="item">
-       <div><van-icon name="comment-o" size="30px"/></div>
+       <div><van-icon name="comment-o" size="25px"/></div>
        <div>评价</div>
      </div>
      <div class="item">
-       <div><van-icon name="completed" size="30px"/></div>
+       <div><van-icon name="completed" size="25px"/></div>
        <div>已完成</div>
      </div>
    </div>
     <div class="container">
       <div class="list">
-        <div><span><van-icon name="records" size="30px"/></span><span class="text">全部订单</span></div>
-        <div> <van-icon name="arrow" size="30px"/></div>
+        <div><span><van-icon name="records" size="25px"/></span><span class="text">全部订单</span></div>
+        <div> <van-icon name="arrow" size="20px"/></div>
       </div>
       <div class="list">
-        <div><span><van-icon name="star-o" size="30px"/></span><span class="text">收藏管理</span></div>
-        <div><van-icon name="arrow" size="30px"/></div>
+        <div><span><van-icon name="star-o" size="25px"/></span><span class="text">收藏管理</span></div>
+        <div><van-icon name="arrow" size="20px"/></div>
+      </div>
+      <div class="list" @click="address">
+        <div><span><van-icon name="points" size="25px"/></span ><span class="text" >地址管理</span></div>
+        <div><van-icon name="arrow" size="20px"/></div>
       </div>
       <div class="list">
-        <div><span><van-icon name="points" size="30px"/></span ><span class="text">地址管理</span></div>
-        <div><van-icon name="arrow" size="30px"/></div>
-      </div>
-      <div class="list">
-        <div><span><van-icon name="eye-o" size="30px"/></span><span class="text">最近浏览</span></div>
-        <div><van-icon name="arrow" size="30px"/></div>
+        <div><span><van-icon name="eye-o" size="25px"/></span><span class="text">最近浏览</span></div>
+        <div><van-icon name="arrow" size="20px"/></div>
       </div>
     </div>
   </div>
@@ -54,7 +54,11 @@
         active:0
       }
     },
-    methods: {},
+    methods: {
+      address(){
+        this.$router.push("/adresslist")
+      }
+    },
 
     mounted() {
 
@@ -87,10 +91,16 @@
       display: flex;
       justify-content: space-between;
       padding: 10px 0;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #f4f5f7;
+      margin: 0 10px;
+
       .text{
         display: inline-block;
         position: relative;
         top: -6px;
+        font-size: 16px;
       }
     }
   }

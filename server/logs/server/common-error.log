@@ -1,0 +1,507 @@
+2019-11-07 11:42:13,364 ERROR 7068 [-/127.0.0.1/-/18ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:45:36,895 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:45:50,409 ERROR 7068 [-/127.0.0.1/-/3ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:48:18,362 ERROR 7068 [-/127.0.0.1/-/5ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:49:48,058 ERROR 7068 [-/127.0.0.1/-/5ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:49:49,255 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:50:21,453 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:50:37,214 ERROR 7068 [-/127.0.0.1/-/3ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:52:26,248 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:52:27,175 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:53:27,504 ERROR 7068 [-/127.0.0.1/-/5ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:53:31,994 ERROR 7068 [-/127.0.0.1/-/3ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-07 11:53:32,490 ERROR 7068 [-/127.0.0.1/-/4ms POST /v1/collection] nodejs.TypeError: Cannot read property 'id' of null
+    at OperatingGoodsController.collection (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:16:24)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 7068
+hostname: stu002
+
+2019-11-08 16:32:10,650 ERROR 5340 [-/127.0.0.1/-/26ms POST /v1/address] nodejs.CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Address"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at ObjectId.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\objectid.js:246:11)
+    at ObjectId.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at ObjectId.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at ObjectId.SchemaType.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1373:15)
+    at ObjectId.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:315:32)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query._updateThunk (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:3641:8)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:3762:23)
+    at model.Query._wrappedThunk [as _updateOne] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to ObjectId failed for value \"1\" at path \"_id\" for model \"Address\""
+name: "CastError"
+stringValue: "\"1\""
+kind: "ObjectId"
+value: 1
+path: "_id"
+reason: undefined
+model: undefined
+pid: 5340
+hostname: stu002
+
+2019-11-08 16:39:32,754 ERROR 5340 [-/127.0.0.1/-/7ms POST /v1/address] nodejs.CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Address"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at ObjectId.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\objectid.js:246:11)
+    at ObjectId.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at ObjectId.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at ObjectId.SchemaType.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1373:15)
+    at ObjectId.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:315:32)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query._updateThunk (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:3641:8)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:3762:23)
+    at model.Query._wrappedThunk [as _updateOne] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to ObjectId failed for value \"1\" at path \"_id\" for model \"Address\""
+name: "CastError"
+stringValue: "\"1\""
+kind: "ObjectId"
+value: 1
+path: "_id"
+reason: undefined
+model: undefined
+pid: 5340
+hostname: stu002
+
+2019-11-08 17:15:00,372 ERROR 5340 [-/127.0.0.1/-/30ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }"
+pid: 5340
+hostname: stu002
+
+2019-11-08 17:15:59,604 ERROR 5340 [-/127.0.0.1/-/10ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }"
+pid: 5340
+hostname: stu002
+
+2019-11-08 17:17:38,291 ERROR 5340 [-/127.0.0.1/-/7ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }"
+pid: 5340
+hostname: stu002
+
+2019-11-08 17:30:36,358 ERROR 5340 [-/127.0.0.1/-/8ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }"
+pid: 5340
+hostname: stu002
+
+2019-11-08 17:32:13,288 ERROR 5340 [-/127.0.0.1/-/8ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dc52a31b41fce14dc75607b') }"
+pid: 5340
+hostname: stu002
+
+2019-11-09 13:39:31,267 ERROR 6312 [-/127.0.0.1/-/13ms POST /v1/addShop] nodejs.TypeError: Cannot read property 'present_price' of null
+    at OperatingGoodsController.addShop (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:61:38)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 6312
+hostname: stu002
+
+2019-11-09 15:01:59,426 ERROR 6312 [-/127.0.0.1/-/8ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:560:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:622:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:2792:8)
+    at model.Query._wrappedThunk [as _deleteMany] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to string failed for value \"{}\" at path \"cid\" for model \"ShopList\""
+name: "CastError"
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: undefined
+model: undefined
+pid: 6312
+hostname: stu002
+
+2019-11-09 15:02:33,731 ERROR 6312 [-/127.0.0.1/-/1ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:560:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:622:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:2792:8)
+    at model.Query._wrappedThunk [as _deleteMany] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to string failed for value \"{}\" at path \"cid\" for model \"ShopList\""
+name: "CastError"
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: undefined
+model: undefined
+pid: 6312
+hostname: stu002
+
+2019-11-09 15:03:30,926 ERROR 6312 [-/127.0.0.1/-/10ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{ '5dc61ca6f334a318a80dee8a': '' }" at path "cid" for model "ShopList"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:560:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:622:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:2792:8)
+    at model.Query._wrappedThunk [as _deleteMany] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to string failed for value \"{ '5dc61ca6f334a318a80dee8a': '' }\" at path \"cid\" for model \"ShopList\""
+name: "CastError"
+stringValue: "\"{ '5dc61ca6f334a318a80dee8a': '' }\""
+kind: "string"
+value: {"5dc61ca6f334a318a80dee8a":""}
+path: "cid"
+reason: undefined
+model: undefined
+pid: 6312
+hostname: stu002
+
+2019-11-09 15:05:59,548 ERROR 6312 [-/127.0.0.1/-/2ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{ '5dc61ca6f334a318a80dee8a': '' }" at path "cid" for model "ShopList"
+    at new CastError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\error\cast.js:29:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:560:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:969:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1383:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schema\string.js:622:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\schematype.js:1352:15)
+    at cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:4644:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:1842:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\query.js:2792:8)
+    at model.Query._wrappedThunk [as _deleteMany] (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongoose@5.7.8@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+message: "Cast to string failed for value \"{ '5dc61ca6f334a318a80dee8a': '' }\" at path \"cid\" for model \"ShopList\""
+name: "CastError"
+stringValue: "\"{ '5dc61ca6f334a318a80dee8a': '' }\""
+kind: "string"
+value: {"5dc61ca6f334a318a80dee8a":""}
+path: "cid"
+reason: undefined
+model: undefined
+pid: 6312
+hostname: stu002
+
+2019-11-09 15:37:45,774 ERROR 6312 [-/127.0.0.1/-/8ms POST /v1/addShop] nodejs.TypeError: Cannot read property 'present_price' of null
+    at OperatingGoodsController.addShop (C:\Users\Administrator\Desktop\mall\server\app\controller\api\operatingGoods.js:61:38)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async C:\Users\Administrator\Desktop\mall\server\app\middleware\isLogin.js:15:13
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-development@2.4.3@egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg-security@2.7.0@egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-session@5.12.3@koa-session\index.js:41:7)
+    at async bodyParser (C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-bodyparser@4.2.1@koa-bodyparser\index.js:86:5)
+    at async C:\Users\Administrator\Desktop\mall\server\node_modules\_koa-static-cache@5.1.2@koa-static-cache\index.js:51:63
+    at async notfound (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\notfound.js:5:5)
+    at async meta (C:\Users\Administrator\Desktop\mall\server\node_modules\_egg@2.25.0@egg\app\middleware\meta.js:12:5)
+
+pid: 6312
+hostname: stu002
+
