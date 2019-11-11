@@ -95,6 +95,12 @@ const routes = [
     name: "detail",
     component: () => import("../views/detail/Detail")
   },
+  // 收藏管理
+  {
+    path: "/collection",
+    name: "collection",
+    component: () => import("../views/collection/Collection")
+  },
   // 评价中心
   {
     path: "/evaluationcentre",

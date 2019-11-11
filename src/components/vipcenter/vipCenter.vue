@@ -17,17 +17,17 @@
        <div><van-icon name="comment-o" size="25px"/></div>
        <div>评价</div>
      </div>
-     <div class="item">
+     <div class="item" @click="compeleted">
        <div><van-icon name="completed" size="25px"/></div>
        <div>已完成</div>
      </div>
    </div>
     <div class="container">
-      <div class="list">
+      <div class="list" @click="compeleted">
         <div><span><van-icon name="records" size="25px"/></span><span class="text">全部订单</span></div>
         <div> <van-icon name="arrow" size="20px"/></div>
       </div>
-      <div class="list">
+      <div class="list" @click="collection">
         <div><span><van-icon name="star-o" size="25px"/></span><span class="text">收藏管理</span></div>
         <div><van-icon name="arrow" size="20px"/></div>
       </div>
@@ -57,6 +57,12 @@
     methods: {
       address(){
         this.$router.push("/adresslist")
+      },
+      collection(){
+        this.$router.push("/collection")
+      },
+      compeleted(){
+        this.$router.push("/completed")
       }
     },
 

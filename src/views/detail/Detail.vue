@@ -10,7 +10,7 @@
       <div class="row">
         <div class="freight">运费：{{ data.goodsOne.__v }}</div>
         <div class="surplus">剩余：{{ data.goodsOne.amount }}</div>
-        <div v-if="lock === true">
+        <div v-if="lock">
           <div class="collect">
             取消收藏
             <div class="heart" @click="cancelCollection(id)">
@@ -69,8 +69,37 @@
       <van-goods-action-button
         type="danger"
         text="立即购买"
-        @click="onClickButton"
+        is-link @click="showPopup"
       />
+      <van-popup v-model="show" position="bottom"
+                 :style="{ height: '35%', width: '100%' }"
+                 get-container="body">
+        <div class="info" v-if="data.goodsOne">
+          <div class="img"><img :src="data.goodsOne.image_path" alt=""></div>
+          <div class="text">
+            <div class="name">{{data.goodsOne.name}}</div>
+            <div class="price">￥{{data.goodsOne.present_price}}</div>
+          </div>
+          <div class="del" @click="clear()">
+            <div class="icon">
+              <van-icon name="cross" color="#999" size="12px" />
+            </div>
+          </div>
+        </div>
+        <div class="sum">
+          <div class="left">
+            <div class="top">购买数量：</div>
+            <div class="bottom" v-if="data.goodsOne">
+              <span class="splus">剩余{{data.goodsOne.amount}}</span>
+              <span class="eve">每人限购50件</span>
+            </div>
+          </div>
+          <div class="right">
+            <van-stepper v-model="value" />
+          </div>
+        </div>
+        <div class="footer" @click="order"><van-button type="danger" size="large">立即购买</van-button></div>
+      </van-popup>
     </van-goods-action>
   </div>
 </template>
@@ -90,7 +119,9 @@ export default {
       data: {},
       active: 0,
       lock: false,
-      num: 0 //购物车数量
+      num: 0, //购物车数量
+      show: false, //设置的遮罩层
+      value: 1, // 立即购买时默认数量
     };
   },
   methods: {
@@ -99,7 +130,7 @@ export default {
       try {
         let res = await this.$api.goodOne(id);
         this.data = res.goods;
-        // console.log(this.data);
+        console.log(this.data);
       } catch (e) {
         console.log(e);
       }
@@ -130,13 +161,11 @@ export default {
         if (res.code === 200) {
           this.$toast(res.msg);
           this.num += 1;
-          // this.$router.push({name:"structrue",query:{num:this.num}})
         }
       } catch (e) {
         console.log(e);
       }
     },
-    onClickButton() {},
     async collection(goodsOne) {
       //收藏
       try {
@@ -146,6 +175,7 @@ export default {
           this.$router.push("./login");
         }
         this.lock = true; //点击收藏后变成取消收藏
+
       } catch (e) {
         console.log(e);
       }
@@ -159,7 +189,38 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    }
+    },
+    async isCollection(id) {
+      //查询是否收藏
+      try {
+        let res = await this.$api.isCollection(id);
+        if (res.isCollection === 1) {
+          this.lock = true;
+        }
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    showPopup() {
+      //打开遮罩层
+      this.show = true;
+    },
+    clear() {
+      this.show = false;  //关闭遮罩层
+    },
+    order(){
+      //跳转结算页面   需要什么参数挂载什么参数
+      this.data.goodsOne.cid=this.data.goodsOne.id;
+      this.data.goodsOne.count=this.value;
+      this.$store.state.total=this.value*this.data.goodsOne.present_price;
+      this.data.goodsOne.idDirect=true
+      let arr = [];
+      console.log(arr);
+      arr.push(this.data.goodsOne)
+      this.$store.state.list=arr;
+      this.$router.push("/order")
+    },
   },
 
   mounted() {
@@ -174,6 +235,7 @@ export default {
       });
     });
     this.getCard();
+    this.isCollection(this.id);
   },
   created() {},
   filters: {},
@@ -234,4 +296,59 @@ export default {
 .all {
   height: 667px;
 }
+.info{
+  display: flex;
+  .del {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #999;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    .icon {
+      text-align: center;
+    }
+  }
+  .img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e4e4e4;
+    background: white;
+    z-index: 99;
+    img{
+      display:block;
+    }
+  }
+  .text{
+    font-size: 14px;
+    margin: 10px 20px;
+    .name{
+      font-size: 14px;
+    }
+  }
+}
+  .sum{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 14px;
+    .bottom{
+      margin: 10px 0;
+      .eve{
+        padding-left: 10px;
+        color: red;
+      }
+    }
+    .right{
+      margin-left: 70px;
+    }
+  }
+  .footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
 </style>

@@ -64,27 +64,27 @@ export default {
       }
     },
     async getDefaultAddress() {
-      //获取默认地址的接口
-      try {
-        let res = await this.$api.getDefaultAddress();
-        console.log(res);
-        if(res.code===200){
-          // this.chosenAddressId = res.defaultAdd.id;
-          this.list.map((item,index)=>{
-            if (item.isDefault) {
-              let obj = this.list.splice(index,1);
-              console.log(obj,1);
-              this.list.unshift(obj[0]);
-              console.log(this.list,2);
-              this.chosenAddressId=item.id
-            }
-          })
-        }
-      } catch (e) {
-        console.log(e);
+    //获取默认地址的接口
+    try {
+      let res = await this.$api.getDefaultAddress();
+      console.log(res);
+      if(res.code===200){
+        // this.chosenAddressId = res.defaultAdd.id;
+        this.list.map((item,index)=>{
+          if (item.isDefault) {
+            let obj = this.list.splice(index,1);
+            console.log(obj,1);
+            this.list.unshift(obj[0]);
+            console.log(this.list,2);
+            this.chosenAddressId=item.id
+          }
+        })
       }
+    } catch (e) {
+      console.log(e);
     }
   },
+},
 
   mounted() {
     this.getAddress();

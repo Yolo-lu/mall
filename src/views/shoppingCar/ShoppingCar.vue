@@ -34,7 +34,7 @@
           <div class="del">
             <van-button type="danger" @click="del">删除</van-button>
           </div>
-          <div><van-button type="danger">去结算</van-button></div>
+          <div><van-button type="danger" @click="order">去结算</van-button></div>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@ export default {
       checked: false /*控制全选*/,
       num: 0 /*控制单选*/,
       id: "",
-
+      list:[], /*打勾的*/
     };
   },
   methods: {
@@ -152,7 +152,18 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    }
+    },
+    order(){
+      //跳转结算页面
+      this.shopList.map(item =>{
+        if(item.check=true){
+          this.list.push(item)
+        }
+      })
+      this.$store.state.list=this.list;
+      this.$store.state.total=this.total;
+      this.$router.push("/order")
+    },
   },
 
   mounted() {

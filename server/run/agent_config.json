@@ -431,8 +431,8 @@
       ],
       "env": [],
       "from": "C:\\Users\\Administrator\\Desktop\\mall\\server\\node_modules\\_egg@2.25.0@egg\\config\\plugin.js",
-      "path": "C:\\Users\\Administrator\\Desktop\\mall\\server\\node_modules\\_egg-multipart@2.9.0@egg-multipart",
-      "version": "2.9.0"
+      "path": "C:\\Users\\Administrator\\Desktop\\mall\\server\\node_modules\\_egg-multipart@2.9.1@egg-multipart",
+      "version": "2.9.1"
     },
     "development": {
       "enable": true,

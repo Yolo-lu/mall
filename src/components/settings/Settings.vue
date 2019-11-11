@@ -107,10 +107,7 @@ export default {
   name: "Settings",
   components: {},
   props: {
-    // users: {
-    //   type: Object,
-    //   default: () => {}
-    // }
+
   },
   data() {
     return {
@@ -126,7 +123,7 @@ export default {
   },
   methods: {
     showPopup() {
-      //打开设置德遮罩层
+      //打开设置的遮罩层
       this.show = true;
       this.date = this.$dayjs()
         .year(this.users.year)
