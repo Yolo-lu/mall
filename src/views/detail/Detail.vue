@@ -1,106 +1,132 @@
 <template>
-  <div>
-    <div class="back" @click="goBack">
-      <van-icon name="arrow-left" size="25px" class="left" />
-    </div>
-    <slide :data="data.goodsOne" v-if="data.goodsOne"></slide>
-    <div class="text" v-if="data.goodsOne">
-      <div class="name">{{ data.goodsOne.name }}</div>
-      <div class="price">￥{{ data.goodsOne.present_price }}</div>
-      <div class="row">
-        <div class="freight">运费：{{ data.goodsOne.__v }}</div>
-        <div class="surplus">剩余：{{ data.goodsOne.amount }}</div>
-        <div v-if="lock">
-          <div class="collect">
-            取消收藏
-            <div class="heart" @click="cancelCollection(id)">
-              <van-icon name="like" color="#FF4847" />
+  <div class="whole" ref="wrapper">
+    <div>
+      <div class="back" @click="goBack">
+        <van-icon name="arrow-left" size="25px" class="left" />
+      </div>
+      <slide :data="data.goodsOne" v-if="data.goodsOne"></slide>
+      <div class="text" v-if="data.goodsOne">
+        <div class="name">{{ data.goodsOne.name }}</div>
+        <div class="price">￥{{ data.goodsOne.present_price }}</div>
+        <div class="row">
+          <div class="freight">运费：{{ data.goodsOne.__v }}</div>
+          <div class="surplus">剩余：{{ data.goodsOne.amount }}</div>
+          <div v-if="lock">
+            <div class="collect">
+              取消收藏
+              <div class="heart" @click="cancelCollection(id)">
+                <van-icon name="like" color="#FF4847" />
+              </div>
             </div>
           </div>
+          <div v-else>
+            <div class="collect">
+              收藏
+              <div class="heart" @click="collection(data.goodsOne)">
+                <van-icon name="like-o" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <van-tabs v-model="active">
+        <van-tab title="商品详情">
+          <div class="all" v-if="data.goodsOne">
+            <div>
+              <div class="detail" v-html="data.goodsOne.detail">
+                {{ this.data.goodsOne.detail }}
+              </div>
+            </div>
+          </div>
+        </van-tab>
+        <van-tab title="商品评论" v-if="!data.comment">暂无评论</van-tab>
+        <van-tab title="商品评论" v-else>
+          <div class="all">
+            <div class="user" v-for="(item,index) in data.comment" :key="index">
+              <div class="infos">
+                <div class="avatar" v-if="!item.anonymous"><img :src="item.user[0].avatar" alt=""></div>
+                <div class="avatar" v-else><img src="../../assets/head.jpg" alt=""></div>
+                <div class="info">
+                  <div class="name" v-if="!item.anonymous">{{item.user[0].nickname}}</div>
+                  <div class="rate">
+                    <van-rate
+                        v-model="item.rate"
+                        :size="16"
+                        color="#ee0a24"
+                        void-icon="star"
+                        void-color="#eee"
+                    />
+                  </div>
+                  <div class="content">评论内容：{{item.content}}</div>
+                </div>
+                <div class="time">{{item.comment_time}}</div>
+              </div>
+            </div>
+          </div>
+        </van-tab>
+      </van-tabs>
+      <van-goods-action>
+        <van-goods-action-icon
+            icon="wap-home-o"
+            text="首页"
+            @click="onClickIcon('/home')"
+        />
+        <div v-if="num > 0">
+          <van-goods-action-icon
+              icon="cart-o"
+              text="购物车"
+              :info="num"
+              @click="onClickIcon('/shoppingCar')"
+          />
         </div>
         <div v-else>
-          <div class="collect">
-            收藏
-            <div class="heart" @click="collection(data.goodsOne)">
-              <van-icon name="like-o" />
+          <van-goods-action-icon
+              icon="cart-o"
+              text="购物车"
+              @click="onClickIcon('/shoppingCar')"
+          />
+        </div>
+        <van-goods-action-button
+            type="warning"
+            text="加入购物车"
+            @click="onClickCar"
+        />
+        <van-goods-action-button
+            type="danger"
+            text="立即购买"
+            is-link @click="showPopup"
+        />
+        <van-popup v-model="show" position="bottom"
+                   :style="{ height: '35%', width: '100%' }"
+                   get-container="body">
+          <div class="info" v-if="data.goodsOne">
+            <div class="img"><img :src="data.goodsOne.image_path" alt=""></div>
+            <div class="text">
+              <div class="name">{{data.goodsOne.name}}</div>
+              <div class="price">￥{{data.goodsOne.present_price}}</div>
+            </div>
+            <div class="del" @click="clear()">
+              <div class="icon">
+                <van-icon name="cross" color="#999" size="12px" />
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          <div class="sum">
+            <div class="left">
+              <div class="top">购买数量：</div>
+              <div class="bottom" v-if="data.goodsOne">
+                <span class="splus">剩余{{data.goodsOne.amount}}</span>
+                <span class="eve">每人限购50件</span>
+              </div>
+            </div>
+            <div class="right">
+              <van-stepper v-model="value" />
+            </div>
+          </div>
+          <div class="footer" @click="order"><van-button type="danger" size="large">立即购买</van-button></div>
+        </van-popup>
+      </van-goods-action >
     </div>
-    <van-tabs v-model="active">
-      <van-tab title="商品详情">
-        <div class="all" ref="wrapper" v-if="this.data.goodsOne">
-          <div>
-            <div class="detail" v-html="this.data.goodsOne.detail">
-              {{ this.data.goodsOne.detail }}
-            </div>
-          </div>
-        </div>
-      </van-tab>
-      <van-tab title="商品评论">暂无评论</van-tab>
-    </van-tabs>
-    <van-goods-action>
-      <van-goods-action-icon
-        icon="wap-home-o"
-        text="首页"
-        @click="onClickIcon('/home')"
-      />
-      <div v-if="num > 0">
-        <van-goods-action-icon
-          icon="cart-o"
-          text="购物车"
-          :info="num"
-          @click="onClickIcon('/shoppingCar')"
-        />
-      </div>
-      <div v-else>
-        <van-goods-action-icon
-          icon="cart-o"
-          text="购物车"
-          @click="onClickIcon('/shoppingCar')"
-        />
-      </div>
-      <van-goods-action-button
-        type="warning"
-        text="加入购物车"
-        @click="onClickCar"
-      />
-      <van-goods-action-button
-        type="danger"
-        text="立即购买"
-        is-link @click="showPopup"
-      />
-      <van-popup v-model="show" position="bottom"
-                 :style="{ height: '35%', width: '100%' }"
-                 get-container="body">
-        <div class="info" v-if="data.goodsOne">
-          <div class="img"><img :src="data.goodsOne.image_path" alt=""></div>
-          <div class="text">
-            <div class="name">{{data.goodsOne.name}}</div>
-            <div class="price">￥{{data.goodsOne.present_price}}</div>
-          </div>
-          <div class="del" @click="clear()">
-            <div class="icon">
-              <van-icon name="cross" color="#999" size="12px" />
-            </div>
-          </div>
-        </div>
-        <div class="sum">
-          <div class="left">
-            <div class="top">购买数量：</div>
-            <div class="bottom" v-if="data.goodsOne">
-              <span class="splus">剩余{{data.goodsOne.amount}}</span>
-              <span class="eve">每人限购50件</span>
-            </div>
-          </div>
-          <div class="right">
-            <van-stepper v-model="value" />
-          </div>
-        </div>
-        <div class="footer" @click="order"><van-button type="danger" size="large">立即购买</van-button></div>
-      </van-popup>
-    </van-goods-action>
   </div>
 </template>
 
@@ -122,18 +148,63 @@ export default {
       num: 0, //购物车数量
       show: false, //设置的遮罩层
       value: 1, // 立即购买时默认数量
+      user:{}, //用户信息
+      order:null, //进入详情页的顺序
     };
   },
+  // beforeRouteEnter(to,from,next){
+  //   if(from.path!==""){
+  //     next(vm=>{
+  //       let id = vm.$route.query.id;
+  //       vm.goodOne(id)
+  //       localStorage.setItem("data",JSON.stringify({data:vm.data}))
+  //     })
+  //   }
+  // },
+
   methods: {
     async goodOne(id) {
       //请求单个商品详情
       try {
         let res = await this.$api.goodOne(id);
         this.data = res.goods;
+        if(this.data){
+          this.$nextTick(() => {
+            //平滑滚动
+            new BScroll(this.$refs.wrapper, {
+              scrollY: true,
+              click: true,
+              startY: 0
+            });
+          });
+        }
         console.log(this.data);
+
+
+        if(!localStorage.getItem("data")){   //拿到数据
+          let arr=[]
+          arr.push(this.data.goodsOne)    //操作数据
+          localStorage.setItem("data",JSON.stringify(arr))   //放回数据
+        }else {
+          let arr=JSON.parse(localStorage.getItem("data"));
+          arr.map((item,index)=>{
+            if(item.id===this.data.id){
+              this.order=index
+          }
+          });
+          if(this.order){
+            let arrNext=arr.splice(this.index,1)
+            arr.unshift(arrNext)
+            localStorage.setItem("data",JSON.stringify(arr))
+          }else {
+            arr.unshift(this.data.goodsOne);
+            localStorage.setItem("data",JSON.stringify(arr))
+          }
+        }
+
       } catch (e) {
         console.log(e);
-      }
+      };
     },
     goBack() {
       this.$router.back();
@@ -170,7 +241,7 @@ export default {
       //收藏
       try {
         let res = await this.$api.collection(goodsOne);
-        console.log(res);
+        // console.log(res);
         if (res.code !== 200) {
           this.$router.push("./login");
         }
@@ -197,7 +268,7 @@ export default {
         if (res.isCollection === 1) {
           this.lock = true;
         }
-        console.log(res);
+        // console.log(res);
       } catch (e) {
         console.log(e);
       }
@@ -216,7 +287,7 @@ export default {
       this.$store.state.total=this.value*this.data.goodsOne.present_price;
       this.data.goodsOne.idDirect=true
       let arr = [];
-      console.log(arr);
+      // console.log(arr);
       arr.push(this.data.goodsOne)
       this.$store.state.list=arr;
       this.$router.push("/order")
@@ -226,16 +297,10 @@ export default {
   mounted() {
     this.id = this.$route.query.id; //接收分类页、首页的id
     this.goodOne(this.id);
-    this.$nextTick(() => {
-      //平滑滚动
-      new BScroll(this.$refs.wrapper, {
-        scrollY: true,
-        click: true,
-        startY: 0
-      });
-    });
+
     this.getCard();
     this.isCollection(this.id);
+
   },
   created() {},
   filters: {},
@@ -246,18 +311,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-* {
-}
+  .whole{
+    /*position: relative;*/
+
+    height: 400px;
+    background: white;
+    margin-bottom: 260px;
+    /*position: fixed;*/
+
+  }
 .back {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: rgba(91, 92, 86, 0.5);
   text-align: center;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 99;
   .left {
     line-height: 40px;
     color: white;
@@ -296,8 +364,39 @@ export default {
 .all {
   height: 667px;
 }
-.info{
+.user .infos{
   display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #e2e2e2;
+    img{
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+  .info{
+    margin: 5px 20px;
+    .rate{
+      margin-top: 10px;
+    }
+    .content{
+      margin-top: 20px;
+    }
+  }
+  .time{
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+  }
+}
+
+.info{
   .del {
     width: 15px;
     height: 15px;

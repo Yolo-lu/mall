@@ -13,8 +13,11 @@
        <div><van-icon name="logistics" size="25px"/></div>
        <div>待收货</div>
      </div>
-     <div class="item">
-       <div><van-icon name="comment-o" size="25px"/></div>
+     <div class="item" @click="evaluation">
+       <div>
+         <van-icon name="comment-o" size="25px" :info="data.length" v-if="data.length"/>
+         <van-icon name="comment-o" size="25px" v-else />
+       </div>
        <div>评价</div>
      </div>
      <div class="item" @click="compeleted">
@@ -35,7 +38,7 @@
         <div><span><van-icon name="points" size="25px"/></span ><span class="text" >地址管理</span></div>
         <div><van-icon name="arrow" size="20px"/></div>
       </div>
-      <div class="list">
+      <div class="list" @click="watched">
         <div><span><van-icon name="eye-o" size="25px"/></span><span class="text">最近浏览</span></div>
         <div><van-icon name="arrow" size="20px"/></div>
       </div>
@@ -51,7 +54,8 @@
     props: {},
     data() {
       return {
-        active:0
+        active:0,
+        data:{}
       }
     },
     methods: {
@@ -63,11 +67,26 @@
       },
       compeleted(){
         this.$router.push("/completed")
-      }
+      },
+      evaluation(){
+        this.$router.push("/evaluationcentre")
+      },
+      watched(){
+        this.$router.push("/watch")
+      },
+      async tobeEvaluated() {
+        //查看待评价的接口
+        try {
+          let res = await this.$api.tobeEvaluated();
+          this.data=res.data.list
+        } catch (e) {
+          console.log(e);
+        }
+      },
     },
 
     mounted() {
-
+    this.tobeEvaluated()
     },
     created() {
 

@@ -130,6 +130,12 @@ const routes = [
     path: "/myorder",
     name: "myorder",
     component: () => import("../views/myorder/MyOrder")
+  },
+  //最近浏览
+  {
+    path: "/watch",
+    name: "watch",
+    component: () => import("../views/watch/Watch")
   }
 ];
 

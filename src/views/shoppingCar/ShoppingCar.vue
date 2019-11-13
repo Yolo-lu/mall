@@ -30,15 +30,17 @@
             <div class="confirm">确认订单</div>
           </div>
         </div>
-        <div class="button">
+        <div class="button" v-if="checked">
           <div class="del">
             <van-button type="danger" @click="del">删除</van-button>
           </div>
-          <div><van-button type="danger" @click="order">去结算</van-button></div>
+          <div>
+            <van-button type="danger" @click="order">去结算</van-button>
+          </div>
         </div>
       </div>
     </div>
-    <div ref="wrapper" class="container">
+    <div ref="wrapper" class="container" :class="{height:checked}">
       <div>
         <div class="box1" v-for="(item, index) in shopList" :key="index">
           <div class="chooseAll">
@@ -81,7 +83,7 @@ export default {
       checked: false /*控制全选*/,
       num: 0 /*控制单选*/,
       id: "",
-      list:[], /*打勾的*/
+      list: [] /*打勾的*/
     };
   },
   methods: {
@@ -143,27 +145,35 @@ export default {
         });
         let res = await this.$api.deleteShop(list);
         console.log(res);
-        if (res.code === 200) {
-          this.shopList = this.shopList.filter(item => {
-            return item.check === false;
+        this.$dialog
+          .confirm({
+            message: "你确认删除本商品"
+          })
+          .then(() => {
+            if (res.code === 200) {
+              this.shopList = this.shopList.filter(item => {
+                return item.check === false;
+              });
+            }
+          })
+          .catch(() => {
+            // on cancel
           });
-          this.$toast(res.msg);
-        }
       } catch (e) {
         console.log(e);
       }
     },
-    order(){
+    order() {
       //跳转结算页面
-      this.shopList.map(item =>{
-        if(item.check=true){
-          this.list.push(item)
+      this.shopList.map(item => {
+        if ((item.check = true)) {
+          this.list.push(item);
         }
-      })
-      this.$store.state.list=this.list;
-      this.$store.state.total=this.total;
-      this.$router.push("/order")
-    },
+      });
+      this.$store.state.list = this.list;
+      this.$store.state.total = this.total;
+      this.$router.push("/order");
+    }
   },
 
   mounted() {
@@ -210,17 +220,17 @@ export default {
     margin: auto;
     background: white;
   }
-  .box{
+  .box {
     margin-top: 120px;
-    .img{
+    .img {
       width: 100%;
-      img{
+      img {
         width: 80px;
         height: 80px;
         display: block;
       }
     }
-    .text{
+    .text {
       margin-top: 20px;
       text-align: center;
       color: #999;
@@ -272,10 +282,9 @@ export default {
     }
   }
 }
-
 .container {
-  height: 430px;
-  margin-top: 190px;
+  height: 540px;
+  margin-top: 120px;
   .box1 {
     background: white;
     display: flex;
@@ -313,5 +322,9 @@ export default {
       }
     }
   }
+}
+.height{
+  height: 480px;
+  margin-top: 184px;
 }
 </style>

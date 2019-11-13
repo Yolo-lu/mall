@@ -45,7 +45,7 @@ export default {
       try {
         let res = await this.$api.getCollection((page = 1));
         this.data = res.data;
-        console.log(this.data);
+        // console.log(this.data);
       } catch (e) {
         console.log(e);
       }

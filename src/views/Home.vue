@@ -14,10 +14,11 @@
           v-model="value"
           background="#f7f8fa"
           class="input"
-          @focus="lock = false"
+          @focus="onfocus"
+          @input="onsearch"
         />
       </div>
-      <div class="text">搜索</div>
+      <div class="text" v-if="value" @click="del">取消</div>
     </div>
 
     <div class="package" v-if="lock" ref="wrapper">
@@ -33,7 +34,7 @@
         <!--    商品分类-->
         <div class="category">
           <div v-for="(item, index) in data.category" :key="index" class="list">
-            <div>
+            <div @click="category(index)">
               <img :src="item.image" alt="" />
               <div class="name">{{ item.mallCategoryName }}</div>
             </div>
@@ -74,8 +75,47 @@
       </div>
     </div>
     <div v-if="!lock">
-      <div class="no" v-if="!value">暂无搜索历史</div>
-      <div class="searchlist" v-else>123</div>
+      <div class="searchlist" v-if="value.trim()" ref="wrapper">
+        <div>
+          <div class="box" v-for="(item, index) in searchData" :key="index">
+            <div class="img" @click="skipDetail">
+              <img :src="item.image" alt="" />
+            </div>
+            <div class="text">
+              <div class="name" @click="skipDetail" v-html="name">
+                {{ name }}
+              </div>
+              <div class="price">
+                <span class="n--price">￥{{ item.present_price }}</span>
+                <s class="o-price">{{ item.orl_price }}</s>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <div class="no" v-if="!searchHistory.length">暂无搜索历史</div>
+        <div class="have" v-else>
+          <div class="top">
+            <div>搜索历史</div>
+            <div class="clear" @click="clearAll">
+              <van-icon name="delete" />
+            </div>
+          </div>
+          <div class="bottom">
+            <div
+              class="each"
+              v-for="(item, index) in searchHistory"
+              :key="index"
+            >
+              <div class="name" @click="onclick(item)">{{ item }}</div>
+              <div class="del" @click="ondelete(index)">
+                <van-icon name="cross" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -96,12 +136,22 @@ export default {
   data() {
     return {
       city: "",
-      value: "",
+      value: "", //搜索框内容
       data: {},
-      lock: true
+      lock: true, //控制首页内容显示与否
+      searchData: [], //搜索列表数据
+      id: "", //搜索后商品的id
+      name: "", //搜索后商品的name
+      searchHistory: [], //搜索历史的数组
+      record: "" //单个历史记录
     };
   },
   methods: {
+    del() {
+      this.lock = true;
+      this.value = "";
+      this.searchData = [];
+    },
     skip() {
       (this.$store.state.city = this.city), // 将city存入vuex
         this.$router.push("/location");
@@ -112,7 +162,7 @@ export default {
         let res = await this.$api.recommend();
         this.data = res.data;
         this.$store.state.category = this.data.category;
-        console.log(this.data);
+        // console.log(this.data);
         this.$nextTick(() => {
           //平滑滚动
           this.scroll = new BScroll(this.$refs.wrapper, {
@@ -125,6 +175,88 @@ export default {
       } catch (e) {
         console.log(e);
       }
+    },
+    category(index) {
+      this.$router.push({ name: "category", query: { categoryID: index } });
+    },
+    onfocus() {
+      //获取焦点
+      this.lock = false;
+      this.searchHistory = JSON.parse(localStorage.getItem("values"));
+    },
+    async onsearch() {
+      try {
+        //搜索接口
+        let res = await this.$api.search(this.value);
+        this.searchData = res.data.list;
+        this.searchData.map(item => {
+          this.id = item.id;
+          this.name = item.name;
+        });
+        // console.log(this.searchData);
+        //搜索词高亮
+        let findText = this.name.split(this.value); //以查找关键字作为拆分成数组
+        this.name = findText.join(
+          '<span style="color:red;">' + this.value + "</span> "
+        ); //在拆分的数组后加入span并转化成字符串
+        this.$nextTick(() => {
+          //平滑滚动
+          this.scroll = new BScroll(this.$refs.wrapper, {
+            scrollY: true,
+            click: true,
+            startY: 0
+          });
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    skipDetail() {
+      this.$router.push({ name: "detail", query: { id: this.id } });
+      if (this.searchHistory) {
+        let arr = this.searchHistory;
+        if (arr.indexOf(this.value) < 0) {
+          arr.unshift(this.value);
+          localStorage.setItem("values", JSON.stringify(arr));
+        }
+      } else {
+        let arr = [];
+        arr.push(this.value);
+        localStorage.setItem("values", JSON.stringify(arr));
+      }
+    },
+    onclick(item) {
+      //点击搜索历史
+      this.value = item;
+      this.onsearch();
+    },
+    ondelete(index) {
+      //删除某个搜索记录
+      this.$dialog
+        .confirm({
+          message: "你确认删除搜索历史"
+        })
+        .then(() => {
+          this.searchHistory.splice(index, 1);
+          localStorage.setItem("values", JSON.stringify(this.searchHistory));
+        })
+        .catch(() => {
+          // on cancel
+        });
+    },
+    clearAll() {
+      //删除所有搜索记录
+      this.$dialog
+        .confirm({
+          message: "你确认清空搜索历史"
+        })
+        .then(() => {
+          this.searchHistory = [];
+          localStorage.setItem("values", JSON.stringify(this.searchHistory));
+        })
+        .catch(() => {
+          // on cancel
+        });
     }
   },
 
@@ -185,6 +317,38 @@ export default {
 * {
   color: #4e4e4e;
 }
+.searchlist {
+  position: fixed;
+  top: 60px;
+  bottom: 50px;
+  width: 100%;
+  overflow: hidden;
+  .box {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    .img {
+      width: 30%;
+      border: 1px solid #f4f5f7;
+    }
+    .text {
+      width: 60%;
+      margin: 10px;
+      .name {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .n--price {
+        color: #ff6f60;
+        margin-bottom: 20px;
+      }
+      .o-price {
+        margin-left: 10px;
+        color: #434343;
+      }
+    }
+  }
+}
 .head {
   display: flex;
   justify-content: space-around;
@@ -206,6 +370,36 @@ export default {
 .no {
   text-align: center;
   margin-top: 50px;
+}
+.have {
+  width: 80%;
+  .top {
+    display: flex;
+    margin: 20px;
+    position: relative;
+  }
+  .bottom {
+    display: flex;
+  }
+  .clear {
+    font-size: 20px;
+    position: absolute;
+    right: -20%;
+  }
+  .each {
+    margin: 10px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+
+    .del {
+      /*font-size: 14px;*/
+      position: relative;
+      top: -10px;
+      left: 10px;
+    }
+  }
 }
 .banner {
   img {

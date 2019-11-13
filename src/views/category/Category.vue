@@ -10,24 +10,29 @@
           :key="index"
           class="row"
           @click="chooseID(index)"
-          :class="{ bg: color === index }"
+          :class="{ bg: ID === index }"
         >
           <div>{{ item.mallCategoryName }}</div>
         </div>
       </div>
-      <div class="right" >
-        <van-tabs v-model="active" @click="chooseid" class="one">
+      <div class="right">
+        <van-tabs v-model="active" @click="chooseid" class="one" v-if="categories[0]">
           <van-tab
-              v-for="(item, index) in categories[ID].bxMallSubDto"
-              :key="index"
-              :title="item.mallSubName"
-              :name="index"
+            v-for="(item, index) in this.categories[ID].bxMallSubDto"
+            :key="index"
+            :title="item.mallSubName"
+            :name="index"
           >
           </van-tab>
         </van-tabs>
         <div ref="wrapper" class="container">
           <div class="all">
-            <div class="content" v-for="(item, index) in data" :key="index" @click="buy(index)">
+            <div
+              class="content"
+              v-for="(item, index) in data"
+              :key="index"
+              @click="buy(index)"
+            >
               <div class="box">
                 <div class="img"><img :src="item.image" alt="" /></div>
                 <div class="text">
@@ -41,7 +46,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -55,56 +59,61 @@ export default {
   props: {},
   data() {
     return {
-      id: "0", //小类的id
-      ID: "0", //大类的id
+      id: 0, //小类的id
+      ID: 0, //大类的id
       data: [], //分类的具体数据
-      active: 1,
-      color: "0"
+      active: 0
+      // categories: {}
     };
   },
   methods: {
     async category(id) {
       try {
         let res = await this.$api.category(id);
-        this.data = res.dataList
-        console.log(this.data);
-        this.$nextTick(() => {    //平滑滚动
-          this.scroll = new BScroll(this.$refs.wrapper, {
-            scrollY: true,
-            click: true,
-            startY:0
-          });
-        });
+        this.data = res.dataList;
+        // console.log(this.data);
+
         // console.log(this.data,2);
       } catch (e) {
         console.log(e);
       }
     },
-    chooseid(name) {  //点击左侧大类
+    chooseid(name) {
+      //点击左侧大类
       this.id = name;
       this.category(this.categories[this.ID].bxMallSubDto[this.id].mallSubId);
     },
-    chooseID(index) {  //点击顶部大类
+    chooseID(index) {
+      //点击顶部大类
       this.ID = index;
       this.category(this.categories[this.ID].bxMallSubDto[this.id].mallSubId);
-
-      this.color = index;
     },
-    buy(val){  //跳转详情页
-      this.$router.push({name:"detail",query:{id:this.data[val].id}})
+    buy(val) {
+      //跳转详情页
+      this.$router.push({ name: "detail", query: { id: this.data[val].id } });
     }
   },
 
   mounted() {
-    this.category(this.categories[this.ID].bxMallSubDto[this.id].mallSubId); //获取数据中传入参数
-
+    this.ID = this.$route.query.categoryID;
+    if (!this.$route.query.categoryID) this.ID = 0
+    let id = this.categories[0].bxMallSubDto[0].mallSubId;
+    this.category(id); //获取数据中传入参数
+    this.$nextTick(() => {
+      //平滑滚动
+      new BScroll(this.$refs.wrapper, {
+        scrollY: true,
+        click: true,
+        startY: 0
+      });
+    });
   },
   created() {},
   filters: {},
   computed: {
     categories() {
       return this.$store.state.category; //将vuex中分类的数据取到
-    }
+    },
   },
   watch: {},
   directives: {}
@@ -121,7 +130,7 @@ export default {
   line-height: 40px;
   width: 100%;
   position: fixed;
-  top:0;
+  top: 0;
   z-index: 99;
   .productlist {
     padding-left: 140px;
@@ -133,7 +142,7 @@ export default {
   .left {
     width: 20%;
     position: fixed;
-    top:40px;
+    top: 40px;
     left: 0;
     /*z-index: 99;*/
     .row {
@@ -177,9 +186,9 @@ export default {
       }
     }
   }
-  .container{
-    height: 667px;
-
+  .container {
+    height: 560px;
+    margin-bottom: 100px;
   }
 }
 </style>
