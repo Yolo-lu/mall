@@ -1,67 +1,76 @@
 <template>
   <div>
-    <div class="top">
-      <div class="title">购物车</div>
-      <div class="box" v-if="shopList.length === 0">
-        <div class="img">
-          <div style="margin: 0 auto;width: 80px;height: 80px">
-            <img src="../../assets/shop.png" alt="" />
-          </div>
-        </div>
-        <div class="text">你的购物车空空如也~~</div>
+    <div v-if="!user" class="unlogin">
+      <div class="img"><img src="../../assets/log.jpg" alt=""></div>
+      <div class="name" @click="skipLogin">请登录</div>
       </div>
-      <div class="list" v-else>
-        <div class="listHead">
-          <div class="left">
-            <div class="chooseAll">
-              <van-checkbox
-                v-model="checked"
-                shape="square"
-                checked-color="red"
-                @click="checkAll"
-              ></van-checkbox>
+    <div v-else>
+      <van-loading type="spinner" color="#1989fa" size="50px" v-if="flag" class="loading"/>
+      <div v-else>
+        <div class="top">
+          <div class="title">购物车</div>
+          <div class="box" v-if="shopList.length === 0">
+            <div class="img">
+              <div style="margin: 0 auto;width: 80px;height: 80px">
+                <img src="../../assets/shop.png" alt="" />
+              </div>
             </div>
-            <div class="text">全选</div>
+            <div class="text">你的购物车空空如也~~</div>
           </div>
-          <div class="right">
-            <div class="count">
-              合计: <span>￥{{ total }}</span>
+          <div class="list" v-else>
+            <div class="listHead">
+              <div class="left">
+                <div class="chooseAll">
+                  <van-checkbox
+                      v-model="checked"
+                      shape="square"
+                      checked-color="red"
+                      @click="checkAll"
+                  ></van-checkbox>
+                </div>
+                <div class="text">全选</div>
+              </div>
+              <div class="right">
+                <div class="count">
+                  合计: <span>￥{{ total }}</span>
+                </div>
+                <div class="confirm">确认订单</div>
+              </div>
             </div>
-            <div class="confirm">确认订单</div>
+            <div class="button" v-if="total">
+              <div class="del">
+                <van-button type="danger" @click="del">删除</van-button>
+              </div>
+              <div>
+                <van-button type="danger" @click="order">去结算</van-button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="button" v-if="checked">
-          <div class="del">
-            <van-button type="danger" @click="del">删除</van-button>
-          </div>
+        <div ref="wrapper" class="container" :class="{height:total}">
           <div>
-            <van-button type="danger" @click="order">去结算</van-button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div ref="wrapper" class="container" :class="{height:checked}">
-      <div>
-        <div class="box1" v-for="(item, index) in shopList" :key="index">
-          <div class="chooseAll">
-            <van-checkbox
-              v-model="item.check"
-              shape="square"
-              checked-color="red"
-              @click="check(item)"
-            >
-            </van-checkbox>
-          </div>
-          <div class="img"><img :src="item.image_path" alt="" /></div>
-          <div class="info">
-            <div class="name">{{ item.name }}</div>
-            <div class="bottom">
-              <div class="price">￥{{ item.present_price }}</div>
-              <div class="count">
-                <van-stepper
-                  v-model="item.count"
-                  @change="edit(item.count, item.cid, item.present_price)"
-                />
+            <div class="box1" v-for="(item, index) in shopList" :key="index">
+              <div class="chooseAll">
+                <van-checkbox
+                    v-model="item.check"
+                    shape="square"
+                    checked-color="red"
+                    @click="check(item)"
+                >
+                </van-checkbox>
+              </div>
+              <div class="img" @click="skipDetail(item)"><img :src="item.image_path" alt="" /></div>
+              <div class="info">
+                <div class="name" @click="skipDetail(item)">{{ item.name }}</div>
+                <div class="bottom">
+                  <div class="price">￥{{ item.present_price }}</div>
+                  <div class="count">
+                    <van-stepper
+                        v-model="item.count"
+                        @change="edit(item.count, item.cid, item.present_price)"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -83,19 +92,36 @@ export default {
       checked: false /*控制全选*/,
       num: 0 /*控制单选*/,
       id: "",
-      list: [] /*打勾的*/
+      list: [], /*打勾的*/
+      flag:true,  //控制加载
+      user:"",// 登录的用户信息
     };
   },
   methods: {
+    skipLogin(){
+      this.$router.push("/login")
+    },
     async getCard() {
-      try {
-        //查看购物车
-        let res = await this.$api.getCard();
-        this.shopList = res.shopList;
-        console.log(this.shopList, 1);
-      } catch (e) {
-        console.log(e);
+      this.user=JSON.parse(localStorage.getItem("user"))
+      if(this.user){
+        try {
+          //查看购物车
+          let res = await this.$api.getCard();
+          this.shopList = res.shopList;
+          this.flag=false;
+          this.$nextTick(() => {
+            //平滑滚动
+            this.scroll = new BScroll(this.$refs.wrapper, {
+              scrollY: true,
+              click: true,
+              startY: 0
+            });
+          });
+        } catch (e) {
+          console.log(e);
+        }
       }
+
     },
     checkAll() {
       //全选
@@ -166,26 +192,21 @@ export default {
     order() {
       //跳转结算页面
       this.shopList.map(item => {
-        if ((item.check = true)) {
+        if ((item.check)) {
           this.list.push(item);
         }
       });
       this.$store.state.list = this.list;
       this.$store.state.total = this.total;
       this.$router.push("/order");
+    },
+    skipDetail(item){  //跳转详情页
+      this.$router.push({name:"detail",query:{id:item.cid}})
     }
-  },
+    },
 
   mounted() {
     this.getCard();
-    this.$nextTick(() => {
-      //平滑滚动
-      this.scroll = new BScroll(this.$refs.wrapper, {
-        scrollY: true,
-        click: true,
-        startY: 0
-      });
-    });
   },
   created() {},
   filters: {},
@@ -206,6 +227,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .unlogin{
+    .img{
+      display: block;
+    }
+    .name{
+      position: fixed;
+      top: 40%;
+      left: 42%;
+      border: 1px solid #111;
+      padding: 10px;
+    }
+  }
+  .loading{
+    position: fixed;
+    top: 40%;
+    left: 45%;
+  }
 .top {
   position: fixed;
   top: 0;
@@ -283,8 +321,9 @@ export default {
   }
 }
 .container {
-  height: 540px;
+  height: 487px;
   margin-top: 120px;
+  margin-bottom: 60px;
   .box1 {
     background: white;
     display: flex;

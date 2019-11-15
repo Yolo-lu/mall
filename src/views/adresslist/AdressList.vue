@@ -34,8 +34,8 @@ export default {
     return {
       chosenAddressId: "1",
       list: [],
-      id:''
-
+      id:'',
+      user:'',//用户登录信息
     };
   },
   methods: {
@@ -43,50 +43,58 @@ export default {
       this.$router.back();
     },
     onAdd() {
-
       this.$router.push("/adressedit")
+      if(!this.user){
+        this.$router.push("/login");
+      }
     },
     onEdit(item) {
-      console.log(item);
+      // console.log(item);
       this.$router.push({name:'adressedit',query:{infos:item}})
     },
     async getAddress() {
-      //获取地址的接口
-      try {
-        let res = await this.$api.getAddress();
-        this.list=res.address
-        this.list.map((item,index)=>{
-          item.id=index+1
-        })
-        console.log(this.list);
-      } catch (e) {
-        console.log(e);
+      if (this.user) {
+        //是否是登录状态
+        //获取地址的接口
+        try {
+          let res = await this.$api.getAddress();
+          this.list = res.address
+          this.list.map((item, index) => {
+            if(item.isDefault){
+              this.chosenAddressId=index
+            }
+            item.id = index
+          })
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     async getDefaultAddress() {
-    //获取默认地址的接口
-    try {
-      let res = await this.$api.getDefaultAddress();
-      console.log(res);
-      if(res.code===200){
-        // this.chosenAddressId = res.defaultAdd.id;
-        this.list.map((item,index)=>{
-          if (item.isDefault) {
-            let obj = this.list.splice(index,1);
-            console.log(obj,1);
-            this.list.unshift(obj[0]);
-            console.log(this.list,2);
-            this.chosenAddressId=item.id
+      if (this.user) {
+        //是否是登录状态
+        //获取默认地址的接口
+        try {
+          let res = await this.$api.getDefaultAddress();
+          if (res.code === 200) {
+            // this.chosenAddressId = res.defaultAdd.id;
+            this.list.map((item, index) => {
+              if (item.isDefault) {
+                let obj = this.list.splice(index, 1);
+                this.list.unshift(obj[0]);
+                this.chosenAddressId = item.id
+              }
+            })
           }
-        })
+        } catch (e) {
+          console.log(e);
+        }
       }
-    } catch (e) {
-      console.log(e);
-    }
   },
 },
 
   mounted() {
+    this.user = JSON.parse(localStorage.getItem("user"));
     this.getAddress();
     this.getDefaultAddress()
   },

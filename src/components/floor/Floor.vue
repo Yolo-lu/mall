@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     buy(val){  //跳转详情页
+      // console.log(this.data);
       this.$router.push({name:"detail",query:{id:this.data[val].goodsId}})
     }
   },

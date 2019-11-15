@@ -6,12 +6,12 @@
       </div>
       <div class="info">我的收藏</div>
     </div>
-    <div class="box" ref="wrapper">
-      <div>
+    <div class="box" ref="wrapper"  v-if="data.list">
+      <div v-if="data.list.length">
         <div class="info" v-for="(item, index) in data.list" :key="index">
-          <div class="img"><img :src="item.image_path" alt="" /></div>
+          <div class="img" @click="skipDetail(item)"><img :src="item.image_path" alt="" /></div>
           <div class="text">
-            <div class="name">{{ item.name }}</div>
+            <div class="name" @click="skipDetail(item)">{{ item.name }}</div>
             <div class="price">￥{{ item.present_price }}</div>
           </div>
           <div class="del" @click="clear(item.cid,index)">
@@ -21,6 +21,7 @@
           </div>
         </div>
       </div>
+      <div v-else><div class="no">暂无收藏</div></div>
     </div>
   </div>
 </template>
@@ -33,28 +34,44 @@ export default {
   props: {},
   data() {
     return {
-      data: {}
+      data: {},
+      page:1,
+      fistLIst:[], //第一页
     };
   },
   methods: {
     back() {
       this.$router.back();
     },
-    async getCollection(page = 1) {
-      //查看是否收藏
-      try {
-        let res = await this.$api.getCollection((page = 1));
-        this.data = res.data;
-        // console.log(this.data);
-      } catch (e) {
-        console.log(e);
+    async getCollection() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        //是否是登录状态
+        //查看是否收藏
+        try {
+          let res = await this.$api.getCollection();
+          this.data = res.data;
+          // console.log(this.data);
+          if (this.data) {
+            this.$nextTick(() => {
+              //平滑滚动
+              this.scroll = new BScroll(this.$refs.wrapper, {
+                scrollY: true,
+                click: true,
+                startY: 0
+              });
+            });
+          }
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     async clear(id,index){
       //取消收藏
       try {
         let res = await this.$api.cancelCollection(id);
-        console.log(res);
+        // console.log(res);
         if(res.code===200){
           this.data.list.splice(index,1)
           this.$toast(res.msg)
@@ -62,19 +79,14 @@ export default {
       } catch (e) {
         console.log(e);
       }
+    },
+    skipDetail(item){  //跳转详情页
+      this.$router.push({name:"detail",query:{id:item.cid}})
     }
   },
 
   mounted() {
     this.getCollection();
-    this.$nextTick(() => {
-      //平滑滚动
-      this.scroll = new BScroll(this.$refs.wrapper, {
-        scrollY: true,
-        click: true,
-        startY: 0
-      });
-    });
   },
   created() {},
   filters: {},
@@ -142,4 +154,10 @@ export default {
     }
   }
 }
+  .no{
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    font-size: 20px;
+  }
 </style>

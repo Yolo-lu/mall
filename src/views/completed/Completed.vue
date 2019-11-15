@@ -6,8 +6,15 @@
       </div>
       <div class="info">我的订单</div>
     </div>
+    <div class="heads" >
+      <div @click="choosed(0)" :class="{choose:active===0}">全部</div>
+      <div @click="choosed(1)" :class="{choose:active===1}">待付款</div>
+      <div @click="choosed(2)" :class="{choose:active===2}">待发货</div>
+      <div @click="choosed(3)" :class="{choose:active===3}">待收货</div>
+      <div @click="choosed(4)" :class="{choose:active===4}">已完成</div>
+    </div>
     <div class="box" ref="wrapper">
-      <div>
+      <div v-if="active===4">
         <div class="info" v-for="(item, index) in list" :key="index">
           <div class="head">
             <div class="order">订单编号：{{item.order_id}}</div>
@@ -35,6 +42,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -46,7 +54,8 @@ export default {
   props: {},
   data() {
     return {
-      list:[]
+      list:[],
+      active:4,
     };
   },
   methods: {
@@ -58,10 +67,12 @@ export default {
       try {
         let res = await this.$api.getMyOrder();
         this.list=res.list;
-        console.log(res);
       } catch (e) {
         console.log(e);
       }
+    },
+    choosed(val){  //头部导航栏动态绑定样式
+      this.active=val
     }
   },
 
@@ -88,7 +99,6 @@ export default {
 .title {
   display: flex;
   height: 45px;
-  border-bottom: #f2f2f2 1px solid;
   background: white;
   position: fixed;
   top: 0;
@@ -105,9 +115,18 @@ export default {
     margin: auto;
   }
 }
+.heads{
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 45px;
+  background: white;
+  width: 100%;
+}
 .box {
   position: fixed;
-  top: 50px;
+  top: 110px;
   bottom: 0;
 }
 .info {
@@ -176,5 +195,8 @@ export default {
     }
   }
 
+}
+.choose{
+  border-bottom: 4px solid red;
 }
 </style>

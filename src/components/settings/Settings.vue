@@ -150,20 +150,23 @@ export default {
     },
     //获取用户
     async user() {
-      try {
-        let res = await this.$api.user();
-        this.id=res.userInfo._id;
-        this.users=res.userInfo
-        // console.log(res);
-      } catch (e) {
-        console.log(e);
+      let loguser=JSON.parse(localStorage.getItem("user"))
+      if(loguser){
+        try {
+          let res = await this.$api.user();
+          this.id=res.userInfo._id;
+          this.users=res.userInfo
+          // console.log(res);
+        } catch (e) {
+          console.log(e);
+        }
       }
+
     },
     async saveUser(val) {  //保存的接口
       try {
         let res = await this.$api.saveUser(val);
         this.$toast(res.msg);
-        console.log(res);
         if(res.code===200){
           let user = res.user;
           this.$store.state.user = user;

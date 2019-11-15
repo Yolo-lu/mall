@@ -214,7 +214,7 @@ export default {
   background: white;
   padding: 10px;
   position: relative;
-
+  margin-top: 10px;
   .img {
     border: 1px solid #f4f5f7;
 

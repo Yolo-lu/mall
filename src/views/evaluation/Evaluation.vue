@@ -73,7 +73,7 @@ export default {
       conment.order_id=this.data.order_id;
       conment.image=[];
       conment._id=this.data._id;
-      console.log(conment);
+      // console.log(conment);
       try {
         let res = await this.$api.comment(conment);
         if(res.code===200){

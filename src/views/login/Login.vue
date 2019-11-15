@@ -91,6 +91,9 @@ export default {
         let res = await this.$api.register(nickname, password, verify);
         this.$toast(res.msg);
         if(res.code===200){
+          let user = res.userInfo;
+          this.$store.state.user = user;
+          localStorage.setItem("user", JSON.stringify(user));
           this.$router.push("./mine");
         }
       } catch (e) {

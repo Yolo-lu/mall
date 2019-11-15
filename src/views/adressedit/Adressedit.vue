@@ -11,10 +11,11 @@
         :area-list="areaList"
         show-delete
         show-set-default
+        show-search-result
         :area-columns-placeholder="['请选择', '请选择', '请选择']"
-        :address-info="infos"
+        :address-info="addressInfo"
         @save="onSave"
-        @delete="onDelete(index)"></van-address-edit>
+        @delete="onDelete"></van-address-edit>
     </div>
   </div>
 </template>
@@ -32,7 +33,7 @@ export default {
         // 收货信息
         address: "",
         addressDetail: "",
-        // areaCode: "",
+        areaCode: "",
         city: "",
         county: "",
         isDefault: false,
@@ -51,7 +52,6 @@ export default {
     },
     async onSave(val) {
       this.addressInfo = val; //编辑地址的详细信息
-      console.log(val, 3);
       this.addressInfo.address = val.province + val.city + val.county+val.addressDetail; //拼接地址
       this.addressInfo.id = this.infos ? this.infos._id : undefined;
       //增加收货地址的接口
@@ -64,7 +64,7 @@ export default {
       }
       ;
       //设置默认收货地址的接口
-      this.id = this.infos._id
+      this.id = this.addressInfo._id
       try {
         let res = await this.$api.setDefaultAddress(this.id);
         this.$toast(res.msg);
@@ -73,13 +73,12 @@ export default {
         console.log(e);
       }
     },
-    async onDelete(index) {
-      this.id = this.infos._id
+    async onDelete() {
+      this.id = this.addressInfo._id
       try {  //删除收货地址的接口
         let res = await this.$api.deleteAddress(this.id);
         this.$toast(res.msg);
         if(res.code===200){
-          this.infos.splice(index,1);
           this.$router.push("/adresslist")
         }
       } catch (e) {
@@ -90,7 +89,7 @@ export default {
 
 
   mounted() {
-    this.infos = this.$route.query.infos;
+    this.addressInfo = this.$route.query.infos;
   },
   created() {},
   filters: {},

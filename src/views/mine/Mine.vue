@@ -2,22 +2,27 @@
   <div>
     <div class="mine">
       <div class="vip">会员中心</div>
-      <div class="info" v-if="flag">
-        <settings ></settings>
-        <div class="img"><img :src="users.avatar" alt="" /></div>
-        <div class="text">欢迎您 :{{ users.nickname }}</div>
-        <div class="logout" >
+      <div class="info">
+        <div v-if="users"><settings ></settings></div>
+        <div class="img" v-if="users"><img :src="users.avatar" alt="" /></div>
+        <div class="img" v-else><img src="../../assets/head.jpg" alt="" /></div>
+        <div class="text" v-if="users">欢迎您 :{{ users.nickname }}</div>
+        <div class="text" v-else>欢迎您</div>
+        <div class="logout" v-if="users">
           <div  @click="exit">退出登录</div>
         </div>
-      </div>
-      <div class="info" v-else>
-        <settings :users="users"></settings>
-        <div class="img"><img src="../../assets/head.jpg" alt="" /></div>
-        <div class="text">欢迎您</div>
-        <div class="logout" >
+        <div class="logout" v-else>
           <div @click="login">登录/注册</div>
         </div>
       </div>
+<!--      <div class="info" v-else>-->
+<!--        <settings :users="users"></settings>-->
+<!--        <div class="img"><img src="../../assets/head.jpg" alt="" /></div>-->
+<!--        <div class="text">欢迎您</div>-->
+<!--        <div class="logout" >-->
+<!--          <div @click="login">登录/注册</div>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <vipcenter></vipcenter>
     </div>
@@ -36,7 +41,8 @@ export default {
   props: {},
   data() {
     return {
-      flag:true
+      // flag:true
+      users:''
     };
   },
   methods: {
@@ -56,20 +62,20 @@ export default {
       }
     },
     login() {
-      this.$router.push("./login");
+      this.$router.push("/login");
     },
 
   },
 
   mounted() {
-
+    this.users=JSON.parse(localStorage.getItem("user"))
   },
   created() {},
   filters: {},
   computed: {
-    users(){
-      return this.$store.state.user
-    }
+    // users(){
+    //   return this.$store.state.user
+    // }
   },
   watch: {},
   directives: {}

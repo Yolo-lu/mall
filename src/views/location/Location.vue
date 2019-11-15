@@ -40,7 +40,7 @@
       <div class="new">
       <div v-for="(item,index) in data1" :key="index" class="row">
         <div v-for="(item1,index1) in item" :key="index1" class="list">
-          {{item1.name}}
+          <div  @click="choose(item1.name)" >{{item1.name}}</div>
         </div>
       </div>
     </div>
@@ -67,7 +67,6 @@ export default {
       this.$router.push("/home");
     },
     choose(item) {
-      // console.log(item);
       this.$store.state.city = item;
       this.$router.push("/home");
     }
@@ -75,14 +74,11 @@ export default {
 
   mounted() {
     this.data = citylist.data;
+    // console.log(this.data);
     // this.data1=this.data;
     this.arr = Object.keys(this.data.cities); //取data.cities得所有键
     this.arr1 = Object.values(this.data.cities);  //取data.cities得所有值
 
-    //  Object.values(this.data.cities).map(item=>{
-    //    this.arr1.push(item)
-    // });
-    // console.log(this.data);
   },
   created() {},
   filters: {},

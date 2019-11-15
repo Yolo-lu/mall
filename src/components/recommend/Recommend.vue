@@ -3,16 +3,16 @@
     <div class="warp">商品推荐</div>
     <div class="all" ref="wrapper">
       <div class="recommend">
-        <div class="box" v-for="(item, index) in data" :key="index" @click="buy(index)">
-          <img :src="item.image" alt="" />
+        <div class="box" v-for="(item, index) in data" :key="index" >
+          <img :src="item.image" alt="" @click="buy(index)"/>
           <div class="text">{{ item.goodsName }}</div>
           <div class="price">
             ￥{{ item.price }}
             <s>￥{{ item.mallPrice }}</s>
           </div>
           <div class="button">
-            <div class="left"><van-icon name="shopping-cart-o" /></div>
-            <div class="right">查看详情</div>
+            <div class="left" @click="addShoppingCar(item)"><van-icon name="shopping-cart-o" /></div>
+            <div class="right" @click="buy(index)">查看详情</div>
           </div>
         </div>
       </div>
@@ -33,12 +33,32 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      num: 0, //购物车数量
+    };
   },
   methods: {
     onClickButton() {},
     buy(val){  //跳转详情页
       this.$router.push({name:"detail",query:{id:this.data[val].goodsId}})
+    },
+    async addShoppingCar(item){
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        //是否是登录状态
+        try {
+          //加入购物车
+          let res = await this.$api.addShop(item.goodsId);
+          if (res.code === 200) {
+            this.$toast(res.msg);
+            this.num += 1;
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        this.$router.push("/login");
+      }
     }
   },
 
@@ -46,7 +66,6 @@ export default {
     this.$nextTick(() => {    //平滑滚动
       this.scroll = new BScroll(this.$refs.wrapper, {
         scrollX: true,
-        click: true
       });
     });
   },

@@ -73,7 +73,7 @@
 
     mounted() {
       this.data = this.$route.query.data;
-      console.log(this.data);
+      // console.log(this.data);
      this.user=JSON.parse(localStorage.getItem("user"))
     },
     created() {

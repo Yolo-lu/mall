@@ -15,22 +15,25 @@
    </div>
     <div ref="wrapper" class="container">
       <div v-if="active===0">
-        <div class="box1" v-for="(item, index) in data" :key="index">
-          <div class="img"><img :src="item.image_path" alt=""></div>
-          <div class="text">
-            <div class="name">{{item.name}}</div>
-            <div class="content" @click="content(item)"><van-icon name="chat" />评论晒单</div>
+        <div v-if="data.length>0">
+          <div class="box1" v-for="(item, index) in data" :key="index">
+            <div class="img"><img :src="item.image_path" alt=""></div>
+            <div class="text">
+              <div class="name">{{item.name}}</div>
+              <div class="content" @click="content(item)"><van-icon name="chat" />评论晒单</div>
+            </div>
           </div>
         </div>
+        <div class="no" v-else>暂无待评论</div>
       </div>
       <div v-if="active===1">
-        <div class="box1" v-for="(item, index) in data1" :key="index">
-          <div class="img"><img :src="item.goods[0].image_path" alt=""></div>
-          <div class="text">
-            <div class="name">{{item.goods[0].name}}</div>
-            <div class="content watch" @click="watch(item)"><van-icon name="chat" />评价详情</div>
+          <div class="box1" v-for="(item, index) in data1" :key="index">
+            <div class="img"><img :src="item.goods[0].image_path" alt=""></div>
+            <div class="text">
+              <div class="name">{{item.goods[0].name}}</div>
+              <div class="content watch" @click="watch(item)"><van-icon name="chat" />评价详情</div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
 
@@ -48,6 +51,7 @@ export default {
       active: 0,
       data:[],  //待评价商品信息
       data1:[],  //已评价商品信息
+      user:'', //登录的用户信息
     };
   },
   methods: {
@@ -55,23 +59,27 @@ export default {
       this.$router.back();
     },
     async tobeEvaluated(page = 1) {
-      //查看待评价的接口
-      try {
-        let res = await this.$api.tobeEvaluated(page = 1);
-        this.data=res.data.list
-        // console.log(this.data);
-      } catch (e) {
-        console.log(e);
+      if(this.user){  //判断是否为登录状态
+        //查看待评价的接口
+        try {
+          let res = await this.$api.tobeEvaluated(page = 1);
+          this.data=res.data.list
+          // console.log(this.data);
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     async alreadyEvaluated(page = 1) {
-      //查看已评价的接口
-      try {
-        let res = await this.$api.alreadyEvaluated(page = 1);
-        this.data1=res.data.list;
-        // console.log(this.data1);
-      } catch (e) {
-        console.log(e);
+      if(this.user) {  //判断是否为登录状态
+        //查看已评价的接口
+        try {
+          let res = await this.$api.alreadyEvaluated(page = 1);
+          this.data1 = res.data.list;
+          // console.log(this.data1);
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     content(item){ //跳转评价
@@ -93,6 +101,7 @@ export default {
   },
 
   mounted() {
+     this.user=JSON.parse(localStorage.getItem("user"))
     this.$nextTick(() => {
       //平滑滚动
       this.scroll = new BScroll(this.$refs.wrapper, {
@@ -158,6 +167,10 @@ export default {
     width: 100%;
     overflow: hidden;
     background: white;
+    .no{
+      text-align: center;
+      margin-top: 50px;
+    }
     .box1{
       display: flex;
       padding: 10px;
