@@ -36,7 +36,7 @@ export default {
     return {
       data: {},
       page:1,
-      fistLIst:[], //第一页
+      // fistLIst:[], //第一页
     };
   },
   methods: {

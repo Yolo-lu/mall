@@ -752,3 +752,73 @@ hostname: stu002
 pid: 6024
 hostname: stu002
 
+2019-11-15 10:10:08,541 ERROR 4992 [-/127.0.0.1/-/19ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce08afb4a2e41380ed47c7') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce08afb4a2e41380ed47c7') }"
+pid: 4992
+hostname: stu002
+
+2019-11-15 10:22:36,539 ERROR 4992 [-/127.0.0.1/-/9ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }"
+pid: 4992
+hostname: stu002
+
+2019-11-15 10:24:33,139 ERROR 4992 [-/127.0.0.1/-/7ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }"
+pid: 4992
+hostname: stu002
+
+2019-11-15 10:24:47,433 ERROR 4992 [-/127.0.0.1/-/11ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0c55b4a2e41380ed47cc') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0c55b4a2e41380ed47cc') }"
+pid: 4992
+hostname: stu002
+
+2019-11-15 10:24:57,939 ERROR 4992 [-/127.0.0.1/-/6ms POST /v1/address] nodejs.MongoError: E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }
+    at Function.create (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\error.js:44:12)
+    at toError (C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\utils.js:150:22)
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\operations\common_functions.js:266:39
+    at C:\Users\Administrator\Desktop\mall\server\node_modules\_mongodb@3.3.3@mongodb\lib\core\connection\pool.js:408:18
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+driver: true
+name: "MongoError"
+index: 0
+code: 11000
+errmsg: "E11000 duplicate key error collection: shoppingMall.address index: _id_ dup key: { : ObjectId('5dce0af5b4a2e41380ed47ca') }"
+pid: 4992
+hostname: stu002
+

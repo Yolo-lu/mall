@@ -72,7 +72,6 @@ export default {
         let res = await this.$api.category(id);
         this.data = res.dataList;
         // console.log(this.data);
-
         // console.log(this.data,2);
       } catch (e) {
         console.log(e);
@@ -95,7 +94,9 @@ export default {
   },
 
   mounted() {
+    // console.log(this.$store.state.category);
     this.ID = this.$route.query.categoryID;
+    // console.log(this.ID);
     if (!this.$route.query.categoryID) this.ID = 0
     let id = this.categories[0].bxMallSubDto[0].mallSubId;
     this.category(id); //获取数据中传入参数
